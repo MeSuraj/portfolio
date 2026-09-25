@@ -3,6 +3,21 @@
     const controls = Array.from(document.querySelectorAll(".control"));
     const themeBtn = document.querySelector(".theme-btn");
     
+    // ---> NAYA CODE: System theme detect karne ke liye <---
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+        document.body.classList.add("light-mode");
+    }
+    
+    // Agar user bich me device ka theme change kare toh live update hone ke liye (Optional but good)
+    window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', event => {
+        if (event.matches) {
+            document.body.classList.add("light-mode");
+        } else {
+            document.body.classList.remove("light-mode");
+        }
+    });
+    // ---> NAYA CODE KHATAM <---
+
     let currentIndex = 0;
     let isTransitioning = false;
     const cooldown = 700; 
